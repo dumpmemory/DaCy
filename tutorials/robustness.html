@@ -1,0 +1,1168 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="Evaluating Robustness" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="tutorials/robustness.html" />
+<meta property="og:site_name" content="DaCy" />
+<meta property="og:description" content="This tutorial walks through how to use Augmenty/ SpaCy augmenters to evalutate robustness of any NLP pipeline. As an example we’ll start out by evaluating SpaCy small and DaCy small on the test set..." />
+<meta property="og:image" content="/_images/social_previews/summary_tutorials_robustness_4a438c7e.png" />
+<meta property="og:image:alt" content="This tutorial walks through how to use Augmenty/ SpaCy augmenters to evalutate robustness of any NLP pipeline. As an example we’ll start out by evaluating Sp..." />
+<meta name="description" content="This tutorial walks through how to use Augmenty/ SpaCy augmenters to evalutate robustness of any NLP pipeline. As an example we’ll start out by evaluating SpaCy small and DaCy small on the test set..." />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Extracting Metrics from text using TextDescriptives" href="textdescriptives.html" /><link rel="prev" title="Advanced Tutorials" href="../adv_tutorials.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
+        <title>Evaluating Robustness - DaCy</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #ff5454;
+  --color-brand-content: #ff7575;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #ff8f8f;
+  --color-brand-content: #ff8f8f;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #ff8f8f;
+  --color-brand-content: #ff8f8f;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">DaCy</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/icon.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/icon_dark.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">DaCy</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials.html">Using DaCy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#named-entity-recognition">Named Entity Recognition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#parts-of-speech-tagging">Parts-of-speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#dependency-parsing">Dependency Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#sentence-segmentation">Sentence Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#noun-chunks">Noun Chunks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#lemmatization">Lemmatization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiment.html">Sentiment Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiment.html#subjectivity">Subjectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiment.html#polarity">Polarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiment.html#emotion">Emotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sentiment.html#dictionary-based-sentiment">Dictionary-Based Sentiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hate-speech.html">Hate Speech</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../adv_tutorials.html">Advanced Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Evaluating Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textdescriptives.html">Extracting Metrics from text using TextDescriptives</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../performance.html">Performance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../performance.general.html">State of the Art Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance.robustness.html">Robustness and Biases</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Evaluating Robustness</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News and Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/dacy.download.html">Downloading and Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/dacy.datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/dacy.score.html">Score</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GitHub</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy/changelog.md">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy">GitHub</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/centre-for-humanities-computing/dacy/edit/main/docs/tutorials/robustness.ipynb" title="Edit this page">
+    <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+      <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+    </svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="evaluating-robustness">
+<h1>Evaluating Robustness<a class="headerlink" href="#evaluating-robustness" title="Permalink to this heading">#</a></h1>
+<p>This tutorial walks through how to use <code class="docutils literal notranslate"><span class="pre">Augmenty</span></code>/<code class="docutils literal notranslate"><span class="pre">SpaCy</span></code> augmenters to evalutate robustness of any NLP pipeline. As an example we’ll start out by evaluating SpaCy small and DaCy small on the test set of <a class="reference external" href="https://github.com/alexandrainst/danlp/blob/master/docs/docs/datasets.md#dane">DaNE</a>. DaNE is the Danish Dependency treebank tagged for part-of-speech tags, dependency relations and named entities. Lastly we will show how to use this framework on any other type of model using <a class="reference external" href="https://github.com/alexandrainst/danlp/blob/master/docs/docs/tasks/ner.md#-bert-bert">DaNLP’s BERT</a> as an example.</p>
+<p>Let us start of with installing the required packages and loading the models and dataset we wish to test on.</p>
+<section id="installing-packages">
+<h2>Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this heading">#</a></h2>
+<p>To get started we will first need to install a few packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install models</span>
+pip<span class="w"> </span>install<span class="w"> </span>dacy
+python<span class="w"> </span>-m<span class="w"> </span>spacy<span class="w"> </span>download<span class="w"> </span>da_core_news_sm
+
+<span class="c1"># install augmentation library</span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;augmenty&gt;1.3.0&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-models-and-data">
+<h2>Loading models and data<a class="headerlink" href="#loading-models-and-data" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dacy.datasets</span> <span class="kn">import</span> <span class="n">dane</span>
+
+<span class="c1"># load the DaNE test set</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">dane</span><span class="p">(</span><span class="n">splits</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download: 0.00B [00:00, ?B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:   2%|▏         | 8.19k/475k [00:01&lt;01:30, 5.15kB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:   9%|▊         | 41.0k/475k [00:01&lt;00:14, 29.4kB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:  19%|█▉        | 90.1k/475k [00:01&lt;00:05, 68.6kB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:  31%|███       | 147k/475k [00:02&lt;00:02, 114kB/s]  
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:  47%|████▋     | 221k/475k [00:02&lt;00:01, 173kB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:  64%|██████▍   | 303k/475k [00:02&lt;00:00, 233kB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download:  85%|████████▍ | 401k/475k [00:02&lt;00:00, 303kB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60882cf072bffe7f46a83a8307373480?download: 475kB [00:02, 166kB/s]                           
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C4">ℹ Grouping every 1 sentences into a document.</span>
+<span class=" -Color -Color-C3">⚠ To generate better training data, you may want to group sentences</span>
+<span class=" -Color -Color-C3">into documents with `-n 10`.</span>
+<span class=" -Color -Color-C2">✔ Generated output file (565 documents):</span>
+<span class=" -Color -Color-C2">/home/runner/.dacy/datasets/dane/dane_train_1.spacy</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C4">ℹ Grouping every 1 sentences into a document.</span>
+<span class=" -Color -Color-C3">⚠ To generate better training data, you may want to group sentences</span>
+<span class=" -Color -Color-C3">into documents with `-n 10`.</span>
+<span class=" -Color -Color-C2">✔ Generated output file (565 documents):</span>
+<span class=" -Color -Color-C2">/home/runner/.dacy/datasets/dane/dane_dev_1.spacy</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C4">ℹ Grouping every 1 sentences into a document.</span>
+<span class=" -Color -Color-C3">⚠ To generate better training data, you may want to group sentences</span>
+<span class=" -Color -Color-C3">into documents with `-n 10`.</span>
+<span class=" -Color -Color-C2">✔ Generated output file (565 documents):</span>
+<span class=" -Color -Color-C2">/home/runner/.dacy/datasets/dane/dane_test_1.spacy</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C4">ℹ Grouping every 1 sentences into a document.</span>
+<span class=" -Color -Color-C3">⚠ To generate better training data, you may want to group sentences</span>
+<span class=" -Color -Color-C3">into documents with `-n 10`.</span>
+<span class=" -Color -Color-C2">✔ Generated output file (565 documents):</span>
+<span class=" -Color -Color-C2">/home/runner/.dacy/datasets/dane/dane_1.spacy</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">import</span> <span class="nn">dacy</span>
+
+<span class="c1"># load models</span>
+<span class="n">spacy_small</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;da_core_news_sm&quot;</span><span class="p">)</span>
+<span class="n">dacy_small</span> <span class="o">=</span> <span class="n">dacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/util.py:887: UserWarning: [W095] Model &#39;da_dacy_small_trf&#39; (0.1.0) was trained with spaCy v3.1 and may not be 100% compatible with the current version (3.5.1). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
+  warnings.warn(warn_msg)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy_transformers/pipeline_component.py:402: UserWarning: Automatically converting a transformer component from spacy-transformers v1.0 to v1.1+. If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spacy-transformers version. For more details and available updates, run: python -m spacy validate
+  warnings.warn(warn_msg)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="estimating-performance">
+<h2>Estimating performance<a class="headerlink" href="#estimating-performance" title="Permalink to this heading">#</a></h2>
+<p>Evaluating models already in the <code class="docutils literal notranslate"><span class="pre">SpaCy</span></code> framework is very straightforward. Simply call the <code class="docutils literal notranslate"><span class="pre">score</span></code> function on your nlp pipeline and choose which metrics you want to calculate performance for. <code class="docutils literal notranslate"><span class="pre">score</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">SpaCy.scorer.Scorer</span></code> that outputs a nicely formatted dataframe. <code class="docutils literal notranslate"><span class="pre">score</span></code> calculates performance for NER, POS, tokenization, and dependency parsing by default, which can be changed with the score_fn argument.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dacy.score</span> <span class="kn">import</span> <span class="n">score</span>
+
+<span class="n">spacy_baseline</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">apply_fn</span><span class="o">=</span><span class="n">spacy_small</span><span class="p">,</span> <span class="n">score_fn</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ents&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">])</span>
+<span class="n">dacy_baseline</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">apply_fn</span><span class="o">=</span><span class="n">dacy_small</span><span class="p">,</span> <span class="n">score_fn</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ents&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/pipeline/attributeruler.py:150: UserWarning: [W036] The component &#39;matcher&#39; does not have any patterns defined.
+  matches = self.matcher(doc, allow_missing=True, as_spans=False)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spacy_baseline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wall_time</th>
+      <th>ents_p</th>
+      <th>ents_r</th>
+      <th>ents_f</th>
+      <th>ents_per_type_PER_p</th>
+      <th>ents_per_type_PER_r</th>
+      <th>ents_per_type_PER_f</th>
+      <th>ents_per_type_LOC_p</th>
+      <th>ents_per_type_LOC_r</th>
+      <th>ents_per_type_LOC_f</th>
+      <th>...</th>
+      <th>ents_per_type_MISC_f</th>
+      <th>ents_per_type_ORG_p</th>
+      <th>ents_per_type_ORG_r</th>
+      <th>ents_per_type_ORG_f</th>
+      <th>ents_excl_MISC_ents_p</th>
+      <th>ents_excl_MISC_ents_r</th>
+      <th>ents_excl_MISC_ents_f</th>
+      <th>pos_acc</th>
+      <th>tag_acc</th>
+      <th>k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.410839</td>
+      <td>0.685598</td>
+      <td>0.605735</td>
+      <td>0.643197</td>
+      <td>0.79235</td>
+      <td>0.805556</td>
+      <td>0.798898</td>
+      <td>0.571429</td>
+      <td>0.666667</td>
+      <td>0.615385</td>
+      <td>...</td>
+      <td>0.584071</td>
+      <td>0.677419</td>
+      <td>0.391304</td>
+      <td>0.496063</td>
+      <td>0.701031</td>
+      <td>0.622426</td>
+      <td>0.659394</td>
+      <td>0.947658</td>
+      <td>0.947658</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dacy_baseline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wall_time</th>
+      <th>ents_p</th>
+      <th>ents_r</th>
+      <th>ents_f</th>
+      <th>ents_per_type_PER_p</th>
+      <th>ents_per_type_PER_r</th>
+      <th>ents_per_type_PER_f</th>
+      <th>ents_per_type_LOC_p</th>
+      <th>ents_per_type_LOC_r</th>
+      <th>ents_per_type_LOC_f</th>
+      <th>...</th>
+      <th>ents_per_type_MISC_f</th>
+      <th>ents_per_type_ORG_p</th>
+      <th>ents_per_type_ORG_r</th>
+      <th>ents_per_type_ORG_f</th>
+      <th>ents_excl_MISC_ents_p</th>
+      <th>ents_excl_MISC_ents_r</th>
+      <th>ents_excl_MISC_ents_f</th>
+      <th>pos_acc</th>
+      <th>tag_acc</th>
+      <th>k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.972951</td>
+      <td>0.774312</td>
+      <td>0.756272</td>
+      <td>0.765186</td>
+      <td>0.874346</td>
+      <td>0.927778</td>
+      <td>0.90027</td>
+      <td>0.736364</td>
+      <td>0.84375</td>
+      <td>0.786408</td>
+      <td>...</td>
+      <td>0.666667</td>
+      <td>0.773109</td>
+      <td>0.571429</td>
+      <td>0.657143</td>
+      <td>0.809524</td>
+      <td>0.778032</td>
+      <td>0.793466</td>
+      <td>0.98002</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 22 columns</p>
+</div></div></div>
+</div>
+<section id="estimating-robustness-and-biases">
+<h3>Estimating robustness and biases<a class="headerlink" href="#estimating-robustness-and-biases" title="Permalink to this heading">#</a></h3>
+<p>To obtain performance estimates on augmented data, simply provide a list of augmenters as the <code class="docutils literal notranslate"><span class="pre">augmenters</span></code> argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">augmenty.span.entities</span> <span class="kn">import</span> <span class="n">create_per_replace_augmenter_v1</span>
+<span class="kn">from</span> <span class="nn">dacy.datasets</span> <span class="kn">import</span> <span class="n">female_names</span>
+<span class="kn">from</span> <span class="nn">spacy.training.augment</span> <span class="kn">import</span> <span class="n">create_lower_casing_augmenter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower_aug</span> <span class="o">=</span> <span class="n">create_lower_casing_augmenter</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">female_name_dict</span> <span class="o">=</span> <span class="n">female_names</span><span class="p">()</span>
+<span class="c1"># Augmenter that replaces names with random Danish female names. Keep the format of the name as is (force_pattern_size=False)</span>
+<span class="c1"># but replace the name with one of the two defined patterns</span>
+
+<span class="n">patterns</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;firstname&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">,</span> <span class="s2">&quot;lastname&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;firstname&quot;</span><span class="p">,</span> <span class="s2">&quot;firstname&quot;</span><span class="p">,</span> <span class="s2">&quot;lastname&quot;</span><span class="p">]]</span>
+<span class="n">female_aug</span> <span class="o">=</span> <span class="n">create_per_replace_augmenter_v1</span><span class="p">(</span><span class="n">female_name_dict</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">spacy_aug</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span>
+    <span class="n">test</span><span class="p">,</span>
+    <span class="n">apply_fn</span><span class="o">=</span><span class="n">spacy_small</span><span class="p">,</span>
+    <span class="n">score_fn</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ents&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">],</span>
+    <span class="n">augmenters</span><span class="o">=</span><span class="p">[</span><span class="n">lower_aug</span><span class="p">,</span> <span class="n">female_aug</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">dacy_aug</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span>
+    <span class="n">test</span><span class="p">,</span>
+    <span class="n">apply_fn</span><span class="o">=</span><span class="n">dacy_small</span><span class="p">,</span>
+    <span class="n">score_fn</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ents&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">],</span>
+    <span class="n">augmenters</span><span class="o">=</span><span class="p">[</span><span class="n">lower_aug</span><span class="p">,</span> <span class="n">female_aug</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/dacy/datasets/names.py:53: FutureWarning: Not prepending group keys to the result index of transform-like apply. In the future, the group keys will be included in the index, regardless of whether the applied function returns a like-indexed object.
+To preserve the previous behavior, use
+
+	&gt;&gt;&gt; .groupby(..., group_keys=False)
+
+To adopt the future behavior and silence this warning, use 
+
+	&gt;&gt;&gt; .groupby(..., group_keys=True)
+  names = names.groupby(level=0).apply(lambda x: x / float(x.sum()))
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/pipeline/attributeruler.py:150: UserWarning: [W036] The component &#39;matcher&#39; does not have any patterns defined.
+  matches = self.matcher(doc, allow_missing=True, as_spans=False)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/pipeline/attributeruler.py:150: UserWarning: [W036] The component &#39;matcher&#39; does not have any patterns defined.
+  matches = self.matcher(doc, allow_missing=True, as_spans=False)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">spacy_baseline</span><span class="p">,</span> <span class="n">spacy_aug</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wall_time</th>
+      <th>ents_p</th>
+      <th>ents_r</th>
+      <th>ents_f</th>
+      <th>ents_per_type_PER_p</th>
+      <th>ents_per_type_PER_r</th>
+      <th>ents_per_type_PER_f</th>
+      <th>ents_per_type_LOC_p</th>
+      <th>ents_per_type_LOC_r</th>
+      <th>ents_per_type_LOC_f</th>
+      <th>...</th>
+      <th>ents_per_type_MISC_f</th>
+      <th>ents_per_type_ORG_p</th>
+      <th>ents_per_type_ORG_r</th>
+      <th>ents_per_type_ORG_f</th>
+      <th>ents_excl_MISC_ents_p</th>
+      <th>ents_excl_MISC_ents_r</th>
+      <th>ents_excl_MISC_ents_f</th>
+      <th>pos_acc</th>
+      <th>tag_acc</th>
+      <th>k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.410839</td>
+      <td>0.685598</td>
+      <td>0.605735</td>
+      <td>0.643197</td>
+      <td>0.792350</td>
+      <td>0.805556</td>
+      <td>0.798898</td>
+      <td>0.571429</td>
+      <td>0.666667</td>
+      <td>0.615385</td>
+      <td>...</td>
+      <td>0.584071</td>
+      <td>0.677419</td>
+      <td>0.391304</td>
+      <td>0.496063</td>
+      <td>0.701031</td>
+      <td>0.622426</td>
+      <td>0.659394</td>
+      <td>0.947658</td>
+      <td>0.947658</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1.526032</td>
+      <td>0.695652</td>
+      <td>0.286738</td>
+      <td>0.406091</td>
+      <td>0.688312</td>
+      <td>0.294444</td>
+      <td>0.412451</td>
+      <td>0.687500</td>
+      <td>0.343750</td>
+      <td>0.458333</td>
+      <td>...</td>
+      <td>0.551020</td>
+      <td>0.666667</td>
+      <td>0.124224</td>
+      <td>0.209424</td>
+      <td>0.683871</td>
+      <td>0.242563</td>
+      <td>0.358108</td>
+      <td>0.922885</td>
+      <td>0.922885</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1.278984</td>
+      <td>0.685598</td>
+      <td>0.605735</td>
+      <td>0.643197</td>
+      <td>0.792350</td>
+      <td>0.805556</td>
+      <td>0.798898</td>
+      <td>0.571429</td>
+      <td>0.666667</td>
+      <td>0.615385</td>
+      <td>...</td>
+      <td>0.584071</td>
+      <td>0.677419</td>
+      <td>0.391304</td>
+      <td>0.496063</td>
+      <td>0.701031</td>
+      <td>0.622426</td>
+      <td>0.659394</td>
+      <td>0.947658</td>
+      <td>0.947658</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dacy_baseline</span><span class="p">,</span> <span class="n">dacy_aug</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wall_time</th>
+      <th>ents_p</th>
+      <th>ents_r</th>
+      <th>ents_f</th>
+      <th>ents_per_type_PER_p</th>
+      <th>ents_per_type_PER_r</th>
+      <th>ents_per_type_PER_f</th>
+      <th>ents_per_type_LOC_p</th>
+      <th>ents_per_type_LOC_r</th>
+      <th>ents_per_type_LOC_f</th>
+      <th>...</th>
+      <th>ents_per_type_MISC_f</th>
+      <th>ents_per_type_ORG_p</th>
+      <th>ents_per_type_ORG_r</th>
+      <th>ents_per_type_ORG_f</th>
+      <th>ents_excl_MISC_ents_p</th>
+      <th>ents_excl_MISC_ents_r</th>
+      <th>ents_excl_MISC_ents_f</th>
+      <th>pos_acc</th>
+      <th>tag_acc</th>
+      <th>k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.972951</td>
+      <td>0.774312</td>
+      <td>0.756272</td>
+      <td>0.765186</td>
+      <td>0.874346</td>
+      <td>0.927778</td>
+      <td>0.900270</td>
+      <td>0.736364</td>
+      <td>0.84375</td>
+      <td>0.786408</td>
+      <td>...</td>
+      <td>0.666667</td>
+      <td>0.773109</td>
+      <td>0.571429</td>
+      <td>0.657143</td>
+      <td>0.809524</td>
+      <td>0.778032</td>
+      <td>0.793466</td>
+      <td>0.980020</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>5.028542</td>
+      <td>0.727088</td>
+      <td>0.639785</td>
+      <td>0.680648</td>
+      <td>0.842424</td>
+      <td>0.772222</td>
+      <td>0.805797</td>
+      <td>0.714286</td>
+      <td>0.78125</td>
+      <td>0.746269</td>
+      <td>...</td>
+      <td>0.617284</td>
+      <td>0.686869</td>
+      <td>0.422360</td>
+      <td>0.523077</td>
+      <td>0.764228</td>
+      <td>0.645309</td>
+      <td>0.699752</td>
+      <td>0.974477</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>4.681273</td>
+      <td>0.774312</td>
+      <td>0.756272</td>
+      <td>0.765186</td>
+      <td>0.874346</td>
+      <td>0.927778</td>
+      <td>0.900270</td>
+      <td>0.736364</td>
+      <td>0.84375</td>
+      <td>0.786408</td>
+      <td>...</td>
+      <td>0.666667</td>
+      <td>0.773109</td>
+      <td>0.571429</td>
+      <td>0.657143</td>
+      <td>0.809524</td>
+      <td>0.778032</td>
+      <td>0.793466</td>
+      <td>0.980020</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div></div></div>
+</div>
+<p>In the second row, we see that <code class="docutils literal notranslate"><span class="pre">SpaCy</span> <span class="pre">small</span></code> is very vulnerable to lower casing as NER recall drops from 0.66 to 0.38. <code class="docutils literal notranslate"><span class="pre">DaCy</span> <span class="pre">small</span></code> is slightly more robust lower casing, but still suffers. Changing names also leads to a drop in performance for both models.</p>
+<p>To better estimate the effect of stochastic augmenters such as those changing names or adding keystroke errors we can use the <code class="docutils literal notranslate"><span class="pre">k</span></code> argument in <code class="docutils literal notranslate"><span class="pre">score</span></code> to run the augmenter multiple times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">augmenty.character.replace</span> <span class="kn">import</span> <span class="n">create_keystroke_error_augmenter_v1</span>
+
+<span class="n">key_05_aug</span> <span class="o">=</span> <span class="n">create_keystroke_error_augmenter_v1</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">keyboard</span><span class="o">=</span><span class="s2">&quot;da_qwerty_v1&quot;</span><span class="p">)</span>
+
+<span class="n">spacy_key</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span>
+    <span class="n">test</span><span class="p">,</span> <span class="n">apply_fn</span><span class="o">=</span><span class="n">spacy_small</span><span class="p">,</span> <span class="n">score_fn</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ents&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">],</span> <span class="n">augmenters</span><span class="o">=</span><span class="p">[</span><span class="n">key_05_aug</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spacy_key</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wall_time</th>
+      <th>ents_p</th>
+      <th>ents_r</th>
+      <th>ents_f</th>
+      <th>ents_per_type_MISC_p</th>
+      <th>ents_per_type_MISC_r</th>
+      <th>ents_per_type_MISC_f</th>
+      <th>ents_per_type_PER_p</th>
+      <th>ents_per_type_PER_r</th>
+      <th>ents_per_type_PER_f</th>
+      <th>...</th>
+      <th>ents_per_type_LOC_f</th>
+      <th>ents_per_type_ORG_p</th>
+      <th>ents_per_type_ORG_r</th>
+      <th>ents_per_type_ORG_f</th>
+      <th>ents_excl_MISC_ents_p</th>
+      <th>ents_excl_MISC_ents_r</th>
+      <th>ents_excl_MISC_ents_f</th>
+      <th>pos_acc</th>
+      <th>tag_acc</th>
+      <th>k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.139870</td>
+      <td>0.088283</td>
+      <td>0.098566</td>
+      <td>0.093141</td>
+      <td>0.049296</td>
+      <td>0.057851</td>
+      <td>0.053232</td>
+      <td>0.125654</td>
+      <td>0.133333</td>
+      <td>0.129380</td>
+      <td>...</td>
+      <td>0.124402</td>
+      <td>0.062147</td>
+      <td>0.068323</td>
+      <td>0.065089</td>
+      <td>0.099792</td>
+      <td>0.109840</td>
+      <td>0.104575</td>
+      <td>0.319894</td>
+      <td>0.319894</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.959271</td>
+      <td>0.091681</td>
+      <td>0.096774</td>
+      <td>0.094159</td>
+      <td>0.025424</td>
+      <td>0.024793</td>
+      <td>0.025105</td>
+      <td>0.134328</td>
+      <td>0.150000</td>
+      <td>0.141732</td>
+      <td>...</td>
+      <td>0.089109</td>
+      <td>0.091463</td>
+      <td>0.093168</td>
+      <td>0.092308</td>
+      <td>0.108280</td>
+      <td>0.116705</td>
+      <td>0.112335</td>
+      <td>0.319728</td>
+      <td>0.319728</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.921194</td>
+      <td>0.124370</td>
+      <td>0.132616</td>
+      <td>0.128361</td>
+      <td>0.089552</td>
+      <td>0.099174</td>
+      <td>0.094118</td>
+      <td>0.152284</td>
+      <td>0.166667</td>
+      <td>0.159151</td>
+      <td>...</td>
+      <td>0.153005</td>
+      <td>0.101695</td>
+      <td>0.111801</td>
+      <td>0.106509</td>
+      <td>0.134490</td>
+      <td>0.141876</td>
+      <td>0.138085</td>
+      <td>0.323506</td>
+      <td>0.323506</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.919950</td>
+      <td>0.088696</td>
+      <td>0.091398</td>
+      <td>0.090026</td>
+      <td>0.049296</td>
+      <td>0.057851</td>
+      <td>0.053232</td>
+      <td>0.121693</td>
+      <td>0.127778</td>
+      <td>0.124661</td>
+      <td>...</td>
+      <td>0.073298</td>
+      <td>0.093960</td>
+      <td>0.086957</td>
+      <td>0.090323</td>
+      <td>0.101617</td>
+      <td>0.100686</td>
+      <td>0.101149</td>
+      <td>0.321937</td>
+      <td>0.321937</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.926956</td>
+      <td>0.110592</td>
+      <td>0.127240</td>
+      <td>0.118333</td>
+      <td>0.071429</td>
+      <td>0.074380</td>
+      <td>0.072874</td>
+      <td>0.148148</td>
+      <td>0.177778</td>
+      <td>0.161616</td>
+      <td>...</td>
+      <td>0.129630</td>
+      <td>0.088889</td>
+      <td>0.099379</td>
+      <td>0.093842</td>
+      <td>0.120155</td>
+      <td>0.141876</td>
+      <td>0.130115</td>
+      <td>0.308226</td>
+      <td>0.308226</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div></div></div>
+</div>
+<p>In this manner, evaluating performance on augmented data for SpaCy pipelines is as easy as defining the augmenters and calling a single function. In the <code class="docutils literal notranslate"><span class="pre">dacy_paper_replication.py</span></code> script you can find the exact script used to evaluate the robustness of Danish NLP models in the <a class="reference internal" href="../tutorials.html"><span class="doc std std-doc">DaCy paper</span></a>.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="textdescriptives.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Extracting Metrics from text using TextDescriptives</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../adv_tutorials.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Advanced Tutorials</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Kenneth Enevoldsen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/centre-for-humanities-computing/dacy" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Evaluating Robustness</a><ul>
+<li><a class="reference internal" href="#installing-packages">Installing packages</a></li>
+<li><a class="reference internal" href="#loading-models-and-data">Loading models and data</a></li>
+<li><a class="reference internal" href="#estimating-performance">Estimating performance</a><ul>
+<li><a class="reference internal" href="#estimating-robustness-and-biases">Estimating robustness and biases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    </body>
+</html>
