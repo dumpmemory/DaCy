@@ -8,9 +8,12 @@
 <meta property="og:url" content="api/dacy.download.html" />
 <meta property="og:site_name" content="DaCy" />
 <meta property="og:description" content="These include methods for downloading DaCy models and loading them into memory. dacy.download: Functions for downloading DaCy models. dacy.load: Functionality for loading and locating DaCy models." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
 <meta property="og:image" content="/_images/social_previews/summary_api_dacy.download_6d649a87.png" />
 <meta property="og:image:alt" content="These include methods for downloading DaCy models and loading them into memory. dacy.download: Functions for downloading DaCy models. dacy.load: Functionalit..." />
 <meta name="description" content="These include methods for downloading DaCy models and loading them into memory. dacy.download: Functions for downloading DaCy models. dacy.load: Functionality for loading and locating DaCy models." />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Datasets" href="dacy.datasets.html" /><link rel="prev" title="FAQ" href="../faq.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
@@ -19,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -293,6 +296,23 @@ being present? Defaults to False.</p></li>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="dacy.download.get_latest_version">
+<span class="sig-prename descclassname"><span class="pre">dacy.download.</span></span><span class="sig-name descname"><span class="pre">get_latest_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dacy/download.html#get_latest_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacy.download.get_latest_version" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the latest version of a DaCy model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>str</em>) – string indicating the model</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>latest version of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="dacy.download.install">
 <span class="sig-prename descclassname"><span class="pre">dacy.download.</span></span><span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dacy/download.html#install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacy.download.install" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
@@ -458,6 +478,7 @@ True.</p>
 <li><a class="reference internal" href="#">Downloading and Loading</a><ul>
 <li><a class="reference internal" href="#module-dacy.download">dacy.download</a><ul>
 <li><a class="reference internal" href="#dacy.download.download_model"><code class="docutils literal notranslate"><span class="pre">download_model()</span></code></a></li>
+<li><a class="reference internal" href="#dacy.download.get_latest_version"><code class="docutils literal notranslate"><span class="pre">get_latest_version()</span></code></a></li>
 <li><a class="reference internal" href="#dacy.download.install"><code class="docutils literal notranslate"><span class="pre">install()</span></code></a></li>
 <li><a class="reference internal" href="#dacy.download.models"><code class="docutils literal notranslate"><span class="pre">models()</span></code></a></li>
 </ul>
