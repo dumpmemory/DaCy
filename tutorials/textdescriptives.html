@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Performance" href="../performance.html" /><link rel="prev" title="Evaluating Robustness" href="robustness.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 6.2.0 and Furo 2022.12.07 -->
         <title>Extracting Metrics from text using TextDescriptives - DaCy</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
@@ -385,7 +385,7 @@ Name: label, dtype: int64
   warnings.warn(warn_msg)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7efb947631c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f1e6069feb0&gt;
 </pre></div>
 </div>
 </div>
@@ -417,9 +417,11 @@ Name: label, dtype: int64
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (246 &gt; 128). Running this sequence through the model will result in indexing errors
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/pipeline/attributeruler.py:150: UserWarning: [W036] The component &#39;matcher&#39; does not have any patterns defined.
   matches = self.matcher(doc, allow_missing=True, as_spans=False)
-Token indices sequence length is longer than the specified maximum sequence length for this model (138 &gt; 128). Running this sequence through the model will result in indexing errors
 </pre></div>
 </div>
 </div>
@@ -477,9 +479,9 @@ Token indices sequence length is longer than the specified maximum sequence leng
   </thead>
   <tbody>
     <tr>
-      <th>5391</th>
+      <th>3416</th>
       <td>ham</td>
-      <td>Watching ajith film ah?</td>
+      <td>But i haf enuff space got like 4 mb...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -501,9 +503,9 @@ Token indices sequence length is longer than the specified maximum sequence leng
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2854</th>
+      <th>3702</th>
       <td>ham</td>
-      <td>Your gonna be the death if me. I'm gonna leave...</td>
+      <td>How is my boy? No sweet words left for me this...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -525,9 +527,9 @@ Token indices sequence length is longer than the specified maximum sequence leng
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3114</th>
+      <th>3762</th>
       <td>ham</td>
-      <td>I wait 4 Ì_ inside da car park...</td>
+      <td>K.i will send in  &amp;lt;#&amp;gt;  min:)</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -549,9 +551,9 @@ Token indices sequence length is longer than the specified maximum sequence leng
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3634</th>
-      <td>ham</td>
-      <td>It's not that you make me cry. It's just that ...</td>
+      <th>1687</th>
+      <td>spam</td>
+      <td>Free Top ringtone -sub to weekly ringtone-get ...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -573,9 +575,9 @@ Token indices sequence length is longer than the specified maximum sequence leng
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1515</th>
+      <th>4304</th>
       <td>ham</td>
-      <td>I wonder if you'll get this text?</td>
+      <td>Yo come over carlos will be here soon</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -617,7 +619,7 @@ Token indices sequence length is longer than the specified maximum sequence leng
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;label&#39;, ylabel=&#39;lix&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/7707bd8d1cd7a7c5ff4fdeda9aa31337b4f593d5a419a47bf28f576b541fb929.png" src="../_images/7707bd8d1cd7a7c5ff4fdeda9aa31337b4f593d5a419a47bf28f576b541fb929.png" />
+<img alt="../_images/2a73a8af482097f2a1c05cfb602ae70371355cc7ab426ddfa1242003c3bf73c6.png" src="../_images/2a73a8af482097f2a1c05cfb602ae70371355cc7ab426ddfa1242003c3bf73c6.png" />
 </div>
 </div>
 <p>Let’s run a quick test to see if any of our metrics correlate strongly with the label</p>
@@ -632,16 +634,16 @@ Token indices sequence length is longer than the specified maximum sequence leng
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coleman_liau_index            -0.155004
-gunning_fog                   -0.117517
-automated_readability_index   -0.114840
-sentence_length_median        -0.110917
-sentence_length_mean          -0.099350
-sentence_length_std            0.098890
-n_unique_tokens               -0.096132
-n_tokens                      -0.095718
-n_characters                  -0.090035
-syllables_per_token_std       -0.087074
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>smog                                      0.568578
+dependency_distance_std                  -0.303385
+sentence_length_std                      -0.273709
+prop_adjacent_dependency_relation_mean    0.259073
+syllables_per_token_median               -0.234866
+prop_adjacent_dependency_relation_std    -0.229577
+gunning_fog                               0.228177
+dependency_distance_mean                  0.217772
+lix                                       0.195676
+syllables_per_token_std                   0.186874
 dtype: float64
 </pre></div>
 </div>
@@ -659,7 +661,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;dependency_distance_mean&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/75bc53cc09f61a634ec31ef80c461fa790edca55e2f9c98c481466fd98cf1322.png" src="../_images/75bc53cc09f61a634ec31ef80c461fa790edca55e2f9c98c481466fd98cf1322.png" />
+<img alt="../_images/fc6480855f25764012a86758c9fe70ed729784bd1f0cf24797ce8e7dc7835c80.png" src="../_images/fc6480855f25764012a86758c9fe70ed729784bd1f0cf24797ce8e7dc7835c80.png" />
 </div>
 </div>
 <p>We can do a similar thing for the <code class="docutils literal notranslate"><span class="pre">lix</span></code> score, where we see that here isn’t a big difference between the two classes:</p>
@@ -673,7 +675,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;lix&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/80209eef2ea2bec8b3ec9a0cf35e3878f8f7a9de46d8f2779076b68964fc3d23.png" src="../_images/80209eef2ea2bec8b3ec9a0cf35e3878f8f7a9de46d8f2779076b68964fc3d23.png" />
+<img alt="../_images/425d78d2b88fb231d7b49db8a0858a959b773871d617d31ed1acc550fb50a7e8.png" src="../_images/425d78d2b88fb231d7b49db8a0858a959b773871d617d31ed1acc550fb50a7e8.png" />
 </div>
 </div>
 <p>Cool! We’ve now done a quick analysis of the SMS dataset and found some differences in the distributions of some readability and dependency-distance metrics between the actual SMS’s and spam.</p>
