@@ -385,7 +385,7 @@ Name: label, dtype: int64
   warnings.warn(warn_msg)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f6948ac5fc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f93945c7400&gt;
 </pre></div>
 </div>
 </div>
@@ -417,11 +417,9 @@ Name: label, dtype: int64
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (182 &gt; 128). Running this sequence through the model will result in indexing errors
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/pipeline/attributeruler.py:150: UserWarning: [W036] The component &#39;matcher&#39; does not have any patterns defined.
   matches = self.matcher(doc, allow_missing=True, as_spans=False)
+Token indices sequence length is longer than the specified maximum sequence length for this model (142 &gt; 128). Running this sequence through the model will result in indexing errors
 </pre></div>
 </div>
 </div>
@@ -460,28 +458,28 @@ Name: label, dtype: int64
       <th>dependency_distance_std</th>
       <th>prop_adjacent_dependency_relation_mean</th>
       <th>prop_adjacent_dependency_relation_std</th>
-      <th>token_length_mean</th>
-      <th>token_length_median</th>
-      <th>token_length_std</th>
-      <th>sentence_length_mean</th>
-      <th>...</th>
-      <th>n_characters</th>
-      <th>n_sentences</th>
       <th>flesch_reading_ease</th>
       <th>flesch_kincaid_grade</th>
       <th>smog</th>
       <th>gunning_fog</th>
-      <th>automated_readability_index</th>
-      <th>coleman_liau_index</th>
-      <th>lix</th>
-      <th>rix</th>
+      <th>...</th>
+      <th>sentence_length_median</th>
+      <th>sentence_length_std</th>
+      <th>syllables_per_token_mean</th>
+      <th>syllables_per_token_median</th>
+      <th>syllables_per_token_std</th>
+      <th>n_tokens</th>
+      <th>n_unique_tokens</th>
+      <th>proportion_unique_tokens</th>
+      <th>n_characters</th>
+      <th>n_sentences</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1649</th>
-      <td>ham</td>
-      <td>ITS A LAPTOP TAKE IT WITH YOU.</td>
+      <th>504</th>
+      <td>spam</td>
+      <td>+123 Congratulations - in this week's competit...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -503,9 +501,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3173</th>
+      <th>4499</th>
       <td>ham</td>
-      <td>It vl bcum more difficult..</td>
+      <td>Nvm take ur time.</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -527,9 +525,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>4805</th>
+      <th>1823</th>
       <td>ham</td>
-      <td>Call me when u finish then i come n pick u.</td>
+      <td>Same as u... Dun wan... Y u dun like me alread...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -551,9 +549,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1991</th>
+      <th>1237</th>
       <td>ham</td>
-      <td>No other Valentines huh? The proof is on your ...</td>
+      <td>Is ur paper in e morn or aft tmr?</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -575,9 +573,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1264</th>
+      <th>3353</th>
       <td>ham</td>
-      <td>I will see in half an hour</td>
+      <td>R u sure they'll understand that! Wine * good ...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -619,7 +617,7 @@ Name: label, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;label&#39;, ylabel=&#39;lix&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/44e5d37979263e5f8afc65cf1d696001371389d7b3c83c13156e0e9993ad22cd.png" src="../_images/44e5d37979263e5f8afc65cf1d696001371389d7b3c83c13156e0e9993ad22cd.png" />
+<img alt="../_images/e1a470cca25a3aa78f91b132e7a47ac6f8a9769925a88cdda2655e3f33e08d25.png" src="../_images/e1a470cca25a3aa78f91b132e7a47ac6f8a9769925a88cdda2655e3f33e08d25.png" />
 </div>
 </div>
 <p>Let’s run a quick test to see if any of our metrics correlate strongly with the label</p>
@@ -634,16 +632,16 @@ Name: label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>smog                           0.573551
-proportion_unique_tokens       0.323051
-rix                           -0.311852
-automated_readability_index   -0.295953
-sentence_length_median        -0.263896
-sentence_length_mean          -0.257276
-flesch_kincaid_grade          -0.248475
-coleman_liau_index            -0.234066
-dependency_distance_mean      -0.213057
-lix                           -0.210438
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>syllables_per_token_median   -0.251576
+rix                          -0.228068
+flesch_reading_ease           0.205550
+syllables_per_token_mean     -0.196602
+flesch_kincaid_grade         -0.188471
+token_length_median          -0.183752
+gunning_fog                  -0.181020
+syllables_per_token_std      -0.173520
+coleman_liau_index           -0.172906
+lix                          -0.158671
 dtype: float64
 </pre></div>
 </div>
@@ -661,7 +659,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;dependency_distance_mean&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/bd33cbfe91bb8ba51bb9399f8e03f50fd4ea12a34c8c2717a1743fc0a792f6be.png" src="../_images/bd33cbfe91bb8ba51bb9399f8e03f50fd4ea12a34c8c2717a1743fc0a792f6be.png" />
+<img alt="../_images/97cb708cccdfd64c06be3d526c7c350728b611c513d3e3f3f7453c68848eb130.png" src="../_images/97cb708cccdfd64c06be3d526c7c350728b611c513d3e3f3f7453c68848eb130.png" />
 </div>
 </div>
 <p>We can do a similar thing for the <code class="docutils literal notranslate"><span class="pre">lix</span></code> score, where we see that here isn’t a big difference between the two classes:</p>
@@ -675,7 +673,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;lix&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/b441751b9be0edc765cfcb893beaf1febd63a33ac006ddd948a2c4704aabd965.png" src="../_images/b441751b9be0edc765cfcb893beaf1febd63a33ac006ddd948a2c4704aabd965.png" />
+<img alt="../_images/47bd00da78d1e0f3079c0e2a36b6bc0ff581bf592001dbfe8d573a35b0df2cba.png" src="../_images/47bd00da78d1e0f3079c0e2a36b6bc0ff581bf592001dbfe8d573a35b0df2cba.png" />
 </div>
 </div>
 <p>Cool! We’ve now done a quick analysis of the SMS dataset and found some differences in the distributions of some readability and dependency-distance metrics between the actual SMS’s and spam.</p>
