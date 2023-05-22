@@ -16,10 +16,10 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Performance" href="../performance.html" /><link rel="prev" title="Evaluating Robustness" href="robustness.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.0.1 and Furo 2022.12.07 -->
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.0.1 and Furo 2023.03.27 -->
         <title>Extracting Metrics from text using TextDescriptives - DaCy</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
@@ -184,11 +184,13 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials.html">Using DaCy</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic.html#named-entity-recognition">Named Entity Recognition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#named-entity-linking">Named Entity Linking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic.html#parts-of-speech-tagging">Parts-of-speech Tagging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic.html#dependency-parsing">Dependency Parsing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic.html#sentence-segmentation">Sentence Segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic.html#noun-chunks">Noun Chunks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic.html#lemmatization">Lemmatization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html#coreference-resolution">Coreference Resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sentiment.html">Sentiment Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sentiment.html#subjectivity">Subjectivity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sentiment.html#polarity">Polarity</a></li>
@@ -219,7 +221,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">GitHub</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy/changelog.md">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy/CHANGELOG.md">Changelog</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy">GitHub</a></li>
 </ul>
 
@@ -377,15 +379,7 @@ Name: label, dtype: int64
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/util.py:887: UserWarning: [W095] Model &#39;da_dacy_small_trf&#39; (0.1.0) was trained with spaCy v3.1 and may not be 100% compatible with the current version (3.5.3). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
-  warnings.warn(warn_msg)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy_transformers/pipeline_component.py:402: UserWarning: Automatically converting a transformer component from spacy-transformers v1.0 to v1.1+. If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spacy-transformers version. For more details and available updates, run: python -m spacy validate
-  warnings.warn(warn_msg)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f433a9a8fa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f6fa1c5cf70&gt;
 </pre></div>
 </div>
 </div>
@@ -404,28 +398,13 @@ Name: label, dtype: int64
 </div>
 </div>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input above-output-prompt docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">textdescriptives</span> <span class="k">as</span> <span class="nn">td</span>
 <span class="c1"># extract the metrics as a dataframe</span>
 <span class="n">metrics</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">extract_df</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">include_text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
-</summary>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/pipeline/attributeruler.py:150: UserWarning: [W036] The component &#39;matcher&#39; does not have any patterns defined.
-  matches = self.matcher(doc, allow_missing=True, as_spans=False)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (131 &gt; 128). Running this sequence through the model will result in indexing errors
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -465,23 +444,23 @@ Name: label, dtype: int64
       <th>syllables_per_token_mean</th>
       <th>syllables_per_token_median</th>
       <th>...</th>
+      <th>prop_adjacent_dependency_relation_mean</th>
+      <th>prop_adjacent_dependency_relation_std</th>
+      <th>flesch_reading_ease</th>
+      <th>flesch_kincaid_grade</th>
       <th>smog</th>
       <th>gunning_fog</th>
       <th>automated_readability_index</th>
       <th>coleman_liau_index</th>
       <th>lix</th>
       <th>rix</th>
-      <th>dependency_distance_mean</th>
-      <th>dependency_distance_std</th>
-      <th>prop_adjacent_dependency_relation_mean</th>
-      <th>prop_adjacent_dependency_relation_std</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>4054</th>
+      <th>4230</th>
       <td>ham</td>
-      <td>When is school starting. Where will you stay. ...</td>
+      <td>U really pig leh sleep so much. My dad wake me...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -503,9 +482,33 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1280</th>
+      <th>48</th>
       <td>ham</td>
-      <td>Oh ho. Is this the first time u use these type...</td>
+      <td>Yeah hopefully, if tyler can't do it I could m...</td>
+      <td>3.695652</td>
+      <td>3.0</td>
+      <td>2.195545</td>
+      <td>4.6</td>
+      <td>7.0</td>
+      <td>3.773592</td>
+      <td>1.521739</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0.248889</td>
+      <td>0.213449</td>
+      <td>73.42687</td>
+      <td>4.160522</td>
+      <td>8.238736</td>
+      <td>8.796522</td>
+      <td>-1.723478</td>
+      <td>-0.504348</td>
+      <td>21.991304</td>
+      <td>0.8</td>
+    </tr>
+    <tr>
+      <th>3350</th>
+      <td>ham</td>
+      <td>At what time are you coming.</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -527,57 +530,33 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1818</th>
-      <td>ham</td>
-      <td>Am i that much dirty fellow?</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2870</th>
-      <td>ham</td>
-      <td>I actually did for the first time in a while. ...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2088</th>
+      <th>3895</th>
       <td>spam</td>
-      <td>Well done ENGLAND! Get the official poly ringt...</td>
+      <td>tells u 2 call 09066358152 to claim å£5000 pri...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2061</th>
+      <td>ham</td>
+      <td>Hey ! I want you ! I crave you ! I miss you ! ...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -619,7 +598,7 @@ Name: label, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;label&#39;, ylabel=&#39;lix&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/39574b969d83a307b36b5ef7413b0f58704d41c9482dcc07406392af279e6e4a.png" src="../_images/39574b969d83a307b36b5ef7413b0f58704d41c9482dcc07406392af279e6e4a.png" />
+<img alt="../_images/70b77127d49380cc30c2efdd8f908c987dd7740f6777fa1e2e1fc35af506994f.png" src="../_images/70b77127d49380cc30c2efdd8f908c987dd7740f6777fa1e2e1fc35af506994f.png" />
 </div>
 </div>
 <p>Let’s run a quick test to see if any of our metrics correlate strongly with the label</p>
@@ -634,16 +613,16 @@ Name: label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prop_adjacent_dependency_relation_mean    0.212364
-smog                                      0.203852
-proportion_unique_tokens                  0.187043
-syllables_per_token_median                0.181077
-coleman_liau_index                       -0.150302
-syllables_per_token_std                  -0.133411
-automated_readability_index              -0.126691
-token_length_mean                        -0.126287
-token_length_std                         -0.124731
-n_characters                             -0.123652
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_unique_tokens               0.357779
+coleman_liau_index            0.341288
+n_characters                  0.332467
+n_tokens                      0.321347
+syllables_per_token_median   -0.281230
+sentence_length_mean          0.234241
+lix                          -0.220676
+sentence_length_median        0.218691
+dependency_distance_mean      0.200152
+syllables_per_token_std       0.197068
 dtype: float64
 </pre></div>
 </div>
@@ -661,7 +640,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;dependency_distance_mean&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/e5bd6b685a2a9f931c4657950361ce4101cf9b6bd5101e953a7cd70f37b60350.png" src="../_images/e5bd6b685a2a9f931c4657950361ce4101cf9b6bd5101e953a7cd70f37b60350.png" />
+<img alt="../_images/5a2a049c8a413b759872563e24ad2c4889452fee3e00a9932ee0930d7fa88309.png" src="../_images/5a2a049c8a413b759872563e24ad2c4889452fee3e00a9932ee0930d7fa88309.png" />
 </div>
 </div>
 <p>We can do a similar thing for the <code class="docutils literal notranslate"><span class="pre">lix</span></code> score, where we see that here isn’t a big difference between the two classes:</p>
@@ -675,7 +654,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;lix&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/1b390d1a384fae98bdc4d8c6723095035731d6a7b00590814b442e4ec88ac78c.png" src="../_images/1b390d1a384fae98bdc4d8c6723095035731d6a7b00590814b442e4ec88ac78c.png" />
+<img alt="../_images/1446abb53723f41628be70ab90562dc540caacad94b25606f91ac21de965c77b.png" src="../_images/1446abb53723f41628be70ab90562dc540caacad94b25606f91ac21de965c77b.png" />
 </div>
 </div>
 <p>Cool! We’ve now done a quick analysis of the SMS dataset and found some differences in the distributions of some readability and dependency-distance metrics between the actual SMS’s and spam.</p>
