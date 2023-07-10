@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="DaCy" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="index.html" />
@@ -30,24 +30,24 @@
 
 <style>
   body {
-    --color-code-background: #272822;
-  --color-code-foreground: #f8f8f2;
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   --color-brand-primary: #ff5454;
   --color-brand-content: #ff7575;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #272822;
-  --color-code-foreground: #f8f8f2;
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   --color-brand-primary: #ff8f8f;
   --color-brand-content: #ff8f8f;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #272822;
-  --color-code-foreground: #f8f8f2;
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   --color-brand-primary: #ff8f8f;
   --color-brand-content: #ff8f8f;
   
@@ -170,7 +170,6 @@
     <img class="sidebar-logo only-dark" src="_static/icon_dark.png" alt="Dark Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">DaCy</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -207,10 +206,10 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="performance.html">Performance</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="performance.general.html">State of the Art Comparison</a></li>
 <li class="toctree-l2"><a class="reference internal" href="performance.robustness.html">Robustness and Biases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/robustness.html">Evaluating Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance_ner.html">Named Entity Recognition</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="news.html">News and Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="news.html">News and Updates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
@@ -221,7 +220,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">GitHub</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy/CHANGELOG.md">Changelog</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/DaCy/blob/main/CHANGELOG.md">Changelog</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/centre-for-humanities-computing/dacy">GitHub</a></li>
 </ul>
 
@@ -268,7 +267,7 @@
           <section id="dacy">
 <h1>DaCy<a class="headerlink" href="#dacy" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://github.com/centre-for-humanities-computing/DaCy"><img alt="GitHub stars" src="https://img.shields.io/github/stars/centre-for-humanities-computing/dacy.svg?style=social&amp;label=Star&amp;maxAge=2592000" /></a></p>
-<p>DaCy is a Danish natural language preprocessing framework made with SpaCy. Its largest pipeline has achieved State-of-the-Art performance on Named entity recognition, part-of-speech tagging and dependency parsing for Danish. Feel free to try out the <a class="reference external" href="https://huggingface.co/chcaa/da_dacy_medium_trf?text=DaCy+er+en+pipeline+til+anvendelse+af+dansk+sprogteknologi+lavet+af+K.+Enevoldsen%2C+L.+Hansen+og+K.+Nielbo+fra+Center+for+Humanities+Computing.">demo</a>. This repository contains material for using DaCy, reproducing the results and guides on usage of the package. Furthermore, it also contains behavioural tests for biases and robustness of Danish NLP pipelines.</p>
+<p>DaCy is a Danish natural language preprocessing framework made with SpaCy. Its largest pipeline has achieved State-of-the-Art performance on Named entity recognition, part-of-speech tagging and dependency parsing for Danish. Feel free to try out the <a class="reference external" href="https://huggingface.co/chcaa/da_dacy_medium_trf?text=DaCy+er+en+pipeline+til+anvendelse+af+dansk+sprogteknologi+lavet+af+K.+Enevoldsen%2C+L.+Hansen+og+K.+Nielbo+fra+Center+for+Humanities+Computing.">demo</a>. This repository contains material for using DaCy, reproducing the results and guides on the usage of the package. Furthermore, it also contains behavioral tests for biases and robustness of Danish NLP pipelines.</p>
 <p>This website contains the documentation for DaCy as well as an introduction to how to
 get started using DaCy and its various features.</p>
 <hr class="docutils" />

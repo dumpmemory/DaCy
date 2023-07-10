@@ -17,6 +17,7 @@ hide-toc: true
 This website contains the documentation for DaCy as well as an introduction to how to
 get started using DaCy and its various features.
 
+
 ---
 
 ````{grid} 1 1 2 2
@@ -100,6 +101,6 @@ api/dacy.score
 :caption: GitHub
 :hidden:
 
-Changelog <https://github.com/centre-for-humanities-computing/dacy/CHANGELOG.md>
+Changelog <https://github.com/centre-for-humanities-computing/DaCy/blob/main/CHANGELOG.md>
 GitHub <https://github.com/centre-for-humanities-computing/dacy>
 ```
