@@ -16,13 +16,13 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Performance" href="../performance.html" /><link rel="prev" title="Evaluating Robustness" href="robustness.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.0.1 and Furo 2023.03.27 -->
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.03.27 -->
         <title>Extracting Metrics from text using TextDescriptives - DaCy</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -378,7 +378,13 @@ Name: label, dtype: int64
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f890184f1f0&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/util.py:910: UserWarning: [W095] Model &#39;da_dacy_small_trf&#39; (0.2.0) was trained with spaCy v3.5.2 and may not be 100% compatible with the current version (3.6.1). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
+  warnings.warn(warn_msg)
+/home/runner/.local/lib/python3.10/site-packages/spacy/util.py:910: UserWarning: [W095] Model &#39;da_dacy_small_ner_fine_grained&#39; (0.1.0) was trained with spaCy v3.5.0 and may not be 100% compatible with the current version (3.6.1). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
+  warnings.warn(warn_msg)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f779b90f3d0&gt;
 </pre></div>
 </div>
 </div>
@@ -410,7 +416,7 @@ Name: label, dtype: int64
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (156 &gt; 128). Running this sequence through the model will result in indexing errors
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (159 &gt; 128). Running this sequence through the model will result in indexing errors
 </pre></div>
 </div>
 </div>
@@ -445,32 +451,32 @@ Name: label, dtype: int64
       <th></th>
       <th>label</th>
       <th>message</th>
-      <th>dependency_distance_mean</th>
-      <th>dependency_distance_std</th>
+      <th>token_length_mean</th>
+      <th>token_length_median</th>
+      <th>token_length_std</th>
+      <th>sentence_length_mean</th>
+      <th>sentence_length_median</th>
+      <th>sentence_length_std</th>
+      <th>syllables_per_token_mean</th>
+      <th>syllables_per_token_median</th>
+      <th>...</th>
       <th>prop_adjacent_dependency_relation_mean</th>
       <th>prop_adjacent_dependency_relation_std</th>
       <th>flesch_reading_ease</th>
       <th>flesch_kincaid_grade</th>
       <th>smog</th>
       <th>gunning_fog</th>
-      <th>...</th>
-      <th>sentence_length_median</th>
-      <th>sentence_length_std</th>
-      <th>syllables_per_token_mean</th>
-      <th>syllables_per_token_median</th>
-      <th>syllables_per_token_std</th>
-      <th>n_tokens</th>
-      <th>n_unique_tokens</th>
-      <th>proportion_unique_tokens</th>
-      <th>n_characters</th>
-      <th>n_sentences</th>
+      <th>automated_readability_index</th>
+      <th>coleman_liau_index</th>
+      <th>lix</th>
+      <th>rix</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1259</th>
+      <th>4093</th>
       <td>ham</td>
-      <td>We have sent JD for Customer Service cum Accou...</td>
+      <td>how are you? I miss you!</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -492,9 +498,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1104</th>
+      <th>4515</th>
       <td>spam</td>
-      <td>Message Important information for O2 user. Tod...</td>
+      <td>Congrats! 2 mobile 3G Videophones R yours. cal...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -516,9 +522,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3307</th>
+      <th>1521</th>
       <td>ham</td>
-      <td>But i'm surprised she still can guess right lo...</td>
+      <td>Are you angry with me. What happen dear</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -540,9 +546,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1159</th>
+      <th>4133</th>
       <td>ham</td>
-      <td>Yun buying... But school got offer 2000 plus o...</td>
+      <td>Is it your yahoo boys that bring in the perf? ...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -564,9 +570,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>4129</th>
+      <th>3446</th>
       <td>ham</td>
-      <td>And by when you're done I mean now</td>
+      <td>Sitting ard nothing to do lor. U leh busy w work?</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -608,7 +614,7 @@ Name: label, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;label&#39;, ylabel=&#39;lix&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/101c1c78fd9c64a5e6d65bab5acbe650138c1e87e83ea18d24bac3dd8e2c8024.png" src="../_images/101c1c78fd9c64a5e6d65bab5acbe650138c1e87e83ea18d24bac3dd8e2c8024.png" />
+<img alt="../_images/fd87377291bc14a4f1b973f712d70800d66090baca39f63d9b01d5d2ead1b6da.png" src="../_images/fd87377291bc14a4f1b973f712d70800d66090baca39f63d9b01d5d2ead1b6da.png" />
 </div>
 </div>
 <p>Let’s run a quick test to see if any of our metrics correlate strongly with the label</p>
@@ -623,16 +629,16 @@ Name: label, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>automated_readability_index    0.266505
-token_length_mean              0.193254
-sentence_length_std            0.189580
-flesch_kincaid_grade           0.188751
-dependency_distance_std        0.175580
-sentence_length_mean           0.159613
-sentence_length_median         0.158852
-flesch_reading_ease           -0.157832
-rix                            0.148635
-n_characters                   0.137715
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lix                                     -0.273294
+token_length_median                     -0.254920
+gunning_fog                             -0.246696
+prop_adjacent_dependency_relation_std    0.229309
+smog                                    -0.222126
+syllables_per_token_mean                -0.219074
+flesch_reading_ease                      0.204431
+token_length_std                        -0.203119
+syllables_per_token_std                 -0.196003
+rix                                     -0.177742
 dtype: float64
 </pre></div>
 </div>
@@ -650,7 +656,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;dependency_distance_mean&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/9828a91752df16242c9c4ab544b54f8bc1de69d4c09990593f44125516d449a1.png" src="../_images/9828a91752df16242c9c4ab544b54f8bc1de69d4c09990593f44125516d449a1.png" />
+<img alt="../_images/99575314200714783770658dda14a790cdf0971229d9d1e38f739d09ab0fe337.png" src="../_images/99575314200714783770658dda14a790cdf0971229d9d1e38f739d09ab0fe337.png" />
 </div>
 </div>
 <p>We can do a similar thing for the <code class="docutils literal notranslate"><span class="pre">lix</span></code> score, where we see that here isn’t a big difference between the two classes:</p>
@@ -664,7 +670,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;lix&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/8c8a1315948f12a02a479b85f499d8f113b8fcb06f485e56775ba35d5d5c11b1.png" src="../_images/8c8a1315948f12a02a479b85f499d8f113b8fcb06f485e56775ba35d5d5c11b1.png" />
+<img alt="../_images/61d7fa6e6c4b7b4358ccedd70abd474764e3f1a9bf525bbbf530351bcdc6fe08.png" src="../_images/61d7fa6e6c4b7b4358ccedd70abd474764e3f1a9bf525bbbf530351bcdc6fe08.png" />
 </div>
 </div>
 <p>Cool! We’ve now done a quick analysis of the SMS dataset and found some differences in the distributions of some readability and dependency-distance metrics between the actual SMS’s and spam.</p>
@@ -749,12 +755,12 @@ dtype: float64
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/design-tabs.js"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4d6b7745"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=2c7c1115"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     </body>
 </html>
