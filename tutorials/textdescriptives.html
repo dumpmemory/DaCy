@@ -389,7 +389,7 @@ If you see errors or degraded performance, download a newer compatible model or 
   warnings.warn(warn_msg)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f436c4da7d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7fa6e0a76ed0&gt;
 </pre></div>
 </div>
 </div>
@@ -458,6 +458,17 @@ If you see errors or degraded performance, download a newer compatible model or 
       <th></th>
       <th>label</th>
       <th>message</th>
+      <th>token_length_mean</th>
+      <th>token_length_median</th>
+      <th>token_length_std</th>
+      <th>sentence_length_mean</th>
+      <th>sentence_length_median</th>
+      <th>sentence_length_std</th>
+      <th>syllables_per_token_mean</th>
+      <th>syllables_per_token_median</th>
+      <th>...</th>
+      <th>prop_adjacent_dependency_relation_mean</th>
+      <th>prop_adjacent_dependency_relation_std</th>
       <th>flesch_reading_ease</th>
       <th>flesch_kincaid_grade</th>
       <th>smog</th>
@@ -466,24 +477,61 @@ If you see errors or degraded performance, download a newer compatible model or 
       <th>coleman_liau_index</th>
       <th>lix</th>
       <th>rix</th>
-      <th>...</th>
-      <th>syllables_per_token_std</th>
-      <th>n_tokens</th>
-      <th>n_unique_tokens</th>
-      <th>proportion_unique_tokens</th>
-      <th>n_characters</th>
-      <th>n_sentences</th>
-      <th>dependency_distance_mean</th>
-      <th>dependency_distance_std</th>
-      <th>prop_adjacent_dependency_relation_mean</th>
-      <th>prop_adjacent_dependency_relation_std</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>5526</th>
+      <th>1924</th>
+      <td>ham</td>
+      <td>Ok</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1738</th>
+      <td>ham</td>
+      <td>K go and sleep well. Take rest:-).</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4194</th>
       <td>spam</td>
-      <td>PRIVATE! Your 2003 Account Statement for shows...</td>
+      <td>Double mins and txts 4 6months FREE Bluetooth ...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -505,9 +553,9 @@ If you see errors or degraded performance, download a newer compatible model or 
       <td>NaN</td>
     </tr>
     <tr>
-      <th>4157</th>
+      <th>2281</th>
       <td>ham</td>
-      <td>It certainly puts things into perspective when...</td>
+      <td>I hav almost reached. Call, i m unable to conn...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -529,57 +577,9 @@ If you see errors or degraded performance, download a newer compatible model or 
       <td>NaN</td>
     </tr>
     <tr>
-      <th>876</th>
-      <td>ham</td>
-      <td>Are you in castor? You need to see something</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>5159</th>
-      <td>ham</td>
-      <td>No but the bluray player can</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3106</th>
-      <td>ham</td>
-      <td>Hi. Happy New Year. I dont mean to intrude but...</td>
+      <th>2052</th>
+      <td>spam</td>
+      <td>Call 09094100151 to use ur mins! Calls cast 10...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -622,7 +622,7 @@ If you see errors or degraded performance, download a newer compatible model or 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;label&#39;, ylabel=&#39;lix&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/59d2956a85238f3e14bad328096b3ddbc668eac7638b4b08ee1e27bf28c85202.png" src="../_images/59d2956a85238f3e14bad328096b3ddbc668eac7638b4b08ee1e27bf28c85202.png" />
+<img alt="../_images/bd6a4aaa8606f1d2dc4c31dbbad3237e9a6d0c6e5672027b05a27dc1647b1760.png" src="../_images/bd6a4aaa8606f1d2dc4c31dbbad3237e9a6d0c6e5672027b05a27dc1647b1760.png" />
 </div>
 </div>
 <p>Let’s run a quick test to see if any of our metrics correlate strongly with the label</p>
@@ -639,16 +639,16 @@ If you see errors or degraded performance, download a newer compatible model or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gunning_fog                              0.219875
-smog                                     0.209371
-flesch_kincaid_grade                     0.195625
-syllables_per_token_std                  0.183510
-flesch_reading_ease                     -0.175929
-automated_readability_index              0.174275
-syllables_per_token_mean                 0.156589
-prop_adjacent_dependency_relation_std    0.136020
-lix                                      0.136004
-rix                                      0.129368
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sentence_length_mean          -0.357808
+sentence_length_median        -0.357455
+n_characters                  -0.355189
+n_unique_tokens               -0.349558
+automated_readability_index   -0.340358
+coleman_liau_index            -0.309611
+flesch_kincaid_grade          -0.305683
+n_tokens                      -0.282447
+token_length_std              -0.282209
+rix                           -0.258777
 dtype: float64
 </pre></div>
 </div>
@@ -666,7 +666,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;dependency_distance_mean&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/41d898a561238bcab4eea2c928ff40d39e601502398b1c3b6d031edc7639755f.png" src="../_images/41d898a561238bcab4eea2c928ff40d39e601502398b1c3b6d031edc7639755f.png" />
+<img alt="../_images/fed9199f331b322d06fcfff10ba316a014cd012f5f55a3a489ccb40dc1b76911.png" src="../_images/fed9199f331b322d06fcfff10ba316a014cd012f5f55a3a489ccb40dc1b76911.png" />
 </div>
 </div>
 <p>We can do a similar thing for the <code class="docutils literal notranslate"><span class="pre">lix</span></code> score, where we see that here isn’t a big difference between the two classes:</p>
@@ -680,7 +680,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;lix&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/037a9daf254b247e993e9493ee856b07d9595c747906810e2080cce88aa34f82.png" src="../_images/037a9daf254b247e993e9493ee856b07d9595c747906810e2080cce88aa34f82.png" />
+<img alt="../_images/d8f416dc428e83e97b5cbb27ab0958f6d55d3501471feeccc2f10b0fc609e286.png" src="../_images/d8f416dc428e83e97b5cbb27ab0958f6d55d3501471feeccc2f10b0fc609e286.png" />
 </div>
 </div>
 <p>Cool! We’ve now done a quick analysis of the SMS dataset and found some differences in the distributions of some readability and dependency-distance metrics between the actual SMS’s and spam.</p>
