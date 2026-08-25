@@ -2,27 +2,27 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Extracting Metrics from text using TextDescriptives" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta property="og:title" content="Extracting Descriptive Statistics" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="tutorials/textdescriptives.html" />
 <meta property="og:site_name" content="DaCy" />
 <meta property="og:description" content="DaCy allows you to use other packages in the spaCy universe as you normally would - just powered by the DaCy models. The following tutorial shows you how to use DaCy and TextDescriptives to extract..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="/_images/social_previews/summary_tutorials_textdescriptives_046f899f.png" />
+<meta property="og:image" content="/_images/social_previews/summary_tutorials_textdescriptives_eb54a9e7.png" />
 <meta property="og:image:alt" content="DaCy allows you to use other packages in the spaCy universe as you normally would - just powered by the DaCy models. The following tutorial shows you how to..." />
 <meta name="description" content="DaCy allows you to use other packages in the spaCy universe as you normally would - just powered by the DaCy models. The following tutorial shows you how to use DaCy and TextDescriptives to extract..." />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Performance" href="../performance.html" /><link rel="prev" title="Evaluating Robustness" href="robustness.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.03.27 -->
-        <title>Extracting Metrics from text using TextDescriptives - DaCy</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Extracting Descriptive Statistics - DaCy</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -200,7 +200,7 @@
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../adv_tutorials.html">Advanced Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="robustness.html">Evaluating Robustness</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Extracting Metrics from text using TextDescriptives</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Extracting Descriptive Statistics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../performance.html">Performance</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -209,14 +209,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../performance_ner.html">Named Entity Recognition</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../news.html">News and Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/dacy.download.html">Downloading and Loading</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/dacy.datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api/dacy.score.html">Score</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">GitHub</span></p>
 <ul>
@@ -264,8 +263,8 @@
           </label>
         </div>
         <article role="main">
-          <section id="extracting-metrics-from-text-using-textdescriptives">
-<h1>Extracting Metrics from text using TextDescriptives<a class="headerlink" href="#extracting-metrics-from-text-using-textdescriptives" title="Permalink to this heading">#</a></h1>
+          <section id="extracting-descriptive-statistics">
+<h1>Extracting Descriptive Statistics<a class="headerlink" href="#extracting-descriptive-statistics" title="Permalink to this heading">#</a></h1>
 <a target="_blank" href="https://colab.research.google.com/github/centre-for-humanities-computing/DaCy/blob/main/textdescriptives_integration.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
@@ -283,7 +282,7 @@ hopefully inspire you to use the tools on your own (Danish) data.</p>
 <p>To start, let’s load a dataset and get a bit familiar with it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">textdescriptives.utils</span> <span class="kn">import</span> <span class="n">load_sms_data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">textdescriptives.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_sms_data</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">load_sms_data</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -350,9 +349,10 @@ hopefully inspire you to use the tools on your own (Danish) data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ham     4825
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label
+ham     4825
 spam     747
-Name: label, dtype: int64
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -364,27 +364,32 @@ Name: label, dtype: int64
 <p>Because we are using a DaCy model, the <code class="docutils literal notranslate"><span class="pre">dependency_distance</span></code> component will use the dependency parser from DaCy for its calculations.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dacy</span>
-<span class="n">nlp</span> <span class="o">=</span> <span class="n">dacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">)</span> <span class="c1"># load the latest version of the small model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dacy</span>
+
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">dacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>  <span class="c1"># load the latest version of the small model</span>
 
 <span class="n">nlp</span><span class="o">.</span><span class="n">add_pipe</span><span class="p">(</span><span class="s2">&quot;textdescriptives/readability&quot;</span><span class="p">)</span>
 <span class="n">nlp</span><span class="o">.</span><span class="n">add_pipe</span><span class="p">(</span><span class="s2">&quot;textdescriptives/dependency_distance&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.local/lib/python3.10/site-packages/spacy/util.py:910: UserWarning: [W095] Model &#39;da_dacy_small_trf&#39; (0.2.0) was trained with spaCy v3.5.2 and may not be 100% compatible with the current version (3.6.1). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
-  warnings.warn(warn_msg)
-/home/runner/.local/lib/python3.10/site-packages/spacy/util.py:910: UserWarning: [W095] Model &#39;da_dacy_small_ner_fine_grained&#39; (0.1.0) was trained with spaCy v3.5.0 and may not be 100% compatible with the current version (3.6.1). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/DaCy/DaCy/.venv/lib/python3.11/site-packages/spacy/util.py:910: UserWarning: [W095] Model &#39;da_dacy_small_trf&#39; (0.2.0) was trained with spaCy v3.5.2 and may not be 100% compatible with the current version (3.7.5). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
   warnings.warn(warn_msg)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f779b90f3d0&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/DaCy/DaCy/.venv/lib/python3.11/site-packages/spacy_transformers/layers/hf_shim.py:137: UserWarning: Error loading saved torch state_dict with strict=True, likely due to differences between &#39;transformers&#39; versions. Attempting to load with strict=False as a fallback...
+
+If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current &#39;transformers&#39; and &#39;spacy-transformers&#39; versions. For more details and available updates, run: python -m spacy validate
+  warnings.warn(warn_msg)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;textdescriptives.components.dependency_distance.DependencyDistance at 0x7f436c4da7d0&gt;
 </pre></div>
 </div>
 </div>
@@ -404,19 +409,21 @@ Name: label, dtype: int64
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">textdescriptives</span> <span class="k">as</span> <span class="nn">td</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">textdescriptives</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
 <span class="c1"># extract the metrics as a dataframe</span>
 <span class="n">metrics</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">extract_df</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">include_text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token indices sequence length is longer than the specified maximum sequence length for this model (159 &gt; 128). Running this sequence through the model will result in indexing errors
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/DaCy/DaCy/.venv/lib/python3.11/site-packages/thinc/shims/pytorch.py:114: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast(&#39;cuda&#39;, args...)` instead.
+  with torch.cuda.amp.autocast(self._mixed_precision):
 </pre></div>
 </div>
 </div>
@@ -451,17 +458,6 @@ Name: label, dtype: int64
       <th></th>
       <th>label</th>
       <th>message</th>
-      <th>token_length_mean</th>
-      <th>token_length_median</th>
-      <th>token_length_std</th>
-      <th>sentence_length_mean</th>
-      <th>sentence_length_median</th>
-      <th>sentence_length_std</th>
-      <th>syllables_per_token_mean</th>
-      <th>syllables_per_token_median</th>
-      <th>...</th>
-      <th>prop_adjacent_dependency_relation_mean</th>
-      <th>prop_adjacent_dependency_relation_std</th>
       <th>flesch_reading_ease</th>
       <th>flesch_kincaid_grade</th>
       <th>smog</th>
@@ -470,37 +466,24 @@ Name: label, dtype: int64
       <th>coleman_liau_index</th>
       <th>lix</th>
       <th>rix</th>
+      <th>...</th>
+      <th>syllables_per_token_std</th>
+      <th>n_tokens</th>
+      <th>n_unique_tokens</th>
+      <th>proportion_unique_tokens</th>
+      <th>n_characters</th>
+      <th>n_sentences</th>
+      <th>dependency_distance_mean</th>
+      <th>dependency_distance_std</th>
+      <th>prop_adjacent_dependency_relation_mean</th>
+      <th>prop_adjacent_dependency_relation_std</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>4093</th>
-      <td>ham</td>
-      <td>how are you? I miss you!</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4515</th>
+      <th>5526</th>
       <td>spam</td>
-      <td>Congrats! 2 mobile 3G Videophones R yours. cal...</td>
+      <td>PRIVATE! Your 2003 Account Statement for shows...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -522,9 +505,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1521</th>
+      <th>4157</th>
       <td>ham</td>
-      <td>Are you angry with me. What happen dear</td>
+      <td>It certainly puts things into perspective when...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -546,9 +529,9 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>4133</th>
+      <th>876</th>
       <td>ham</td>
-      <td>Is it your yahoo boys that bring in the perf? ...</td>
+      <td>Are you in castor? You need to see something</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -570,9 +553,33 @@ Name: label, dtype: int64
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3446</th>
+      <th>5159</th>
       <td>ham</td>
-      <td>Sitting ard nothing to do lor. U leh busy w work?</td>
+      <td>No but the bluray player can</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3106</th>
+      <td>ham</td>
+      <td>Hi. Happy New Year. I dont mean to intrude but...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -605,7 +612,8 @@ Name: label, dtype: int64
 <p>With the metrics extracted, let’s do some quick exploratory data analysis to get a sense of the data. Let us start of by taking a look at the distribution of the readability metrics, <code class="docutils literal notranslate"><span class="pre">lix</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lix&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -614,7 +622,7 @@ Name: label, dtype: int64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;label&#39;, ylabel=&#39;lix&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/fd87377291bc14a4f1b973f712d70800d66090baca39f63d9b01d5d2ead1b6da.png" src="../_images/fd87377291bc14a4f1b973f712d70800d66090baca39f63d9b01d5d2ead1b6da.png" />
+<img alt="../_images/59d2956a85238f3e14bad328096b3ddbc668eac7638b4b08ee1e27bf28c85202.png" src="../_images/59d2956a85238f3e14bad328096b3ddbc668eac7638b4b08ee1e27bf28c85202.png" />
 </div>
 </div>
 <p>Let’s run a quick test to see if any of our metrics correlate strongly with the label</p>
@@ -623,22 +631,24 @@ Name: label, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># encode the label as a boolean</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;is_ham&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ham&quot;</span>
 <span class="c1"># compute the correlation between all metrics and the label</span>
-<span class="n">metrics_correlations</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">corrwith</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;is_ham&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">metrics_correlations</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">corrwith</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;is_ham&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 <span class="n">metrics_correlations</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lix                                     -0.273294
-token_length_median                     -0.254920
-gunning_fog                             -0.246696
-prop_adjacent_dependency_relation_std    0.229309
-smog                                    -0.222126
-syllables_per_token_mean                -0.219074
-flesch_reading_ease                      0.204431
-token_length_std                        -0.203119
-syllables_per_token_std                 -0.196003
-rix                                     -0.177742
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gunning_fog                              0.219875
+smog                                     0.209371
+flesch_kincaid_grade                     0.195625
+syllables_per_token_std                  0.183510
+flesch_reading_ease                     -0.175929
+automated_readability_index              0.174275
+syllables_per_token_mean                 0.156589
+prop_adjacent_dependency_relation_std    0.136020
+lix                                      0.136004
+rix                                      0.129368
 dtype: float64
 </pre></div>
 </div>
@@ -656,7 +666,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;dependency_distance_mean&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/99575314200714783770658dda14a790cdf0971229d9d1e38f739d09ab0fe337.png" src="../_images/99575314200714783770658dda14a790cdf0971229d9d1e38f739d09ab0fe337.png" />
+<img alt="../_images/41d898a561238bcab4eea2c928ff40d39e601502398b1c3b6d031edc7639755f.png" src="../_images/41d898a561238bcab4eea2c928ff40d39e601502398b1c3b6d031edc7639755f.png" />
 </div>
 </div>
 <p>We can do a similar thing for the <code class="docutils literal notranslate"><span class="pre">lix</span></code> score, where we see that here isn’t a big difference between the two classes:</p>
@@ -670,7 +680,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;lix&#39;, ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/61d7fa6e6c4b7b4358ccedd70abd474764e3f1a9bf525bbbf530351bcdc6fe08.png" src="../_images/61d7fa6e6c4b7b4358ccedd70abd474764e3f1a9bf525bbbf530351bcdc6fe08.png" />
+<img alt="../_images/037a9daf254b247e993e9493ee856b07d9595c747906810e2080cce88aa34f82.png" src="../_images/037a9daf254b247e993e9493ee856b07d9595c747906810e2080cce88aa34f82.png" />
 </div>
 </div>
 <p>Cool! We’ve now done a quick analysis of the SMS dataset and found some differences in the distributions of some readability and dependency-distance metrics between the actual SMS’s and spam.</p>
@@ -707,7 +717,7 @@ dtype: float64
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Kenneth Enevoldsen
+                Copyright &#169; 2026, Kenneth Enevoldsen
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -740,7 +750,7 @@ dtype: float64
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Extracting Metrics from text using TextDescriptives</a><ul>
+<li><a class="reference internal" href="#">Extracting Descriptive Statistics</a><ul>
 <li><a class="reference internal" href="#data">Data</a></li>
 <li><a class="reference internal" href="#adding-textdescriptives-components-to-dacy">Adding TextDescriptives components to DaCy</a></li>
 <li><a class="reference internal" href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
@@ -755,12 +765,15 @@ dtype: float64
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4d6b7745"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script src="../_static/scripts/furo.js?v=2c7c1115"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     </body>
 </html>

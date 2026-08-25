@@ -5,8 +5,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Extracting Metrics from text using TextDescriptives\n",
-    "\n",
+    "# Extracting Descriptive Statistics\n",
     "\n",
     "<a target=\"_blank\" href=\"https://colab.research.google.com/github/centre-for-humanities-computing/DaCy/blob/main/textdescriptives_integration.ipynb\">\n",
     "  <img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/>\n",
@@ -183,7 +182,8 @@
    ],
    "source": [
     "import dacy\n",
-    "nlp = dacy.load(\"small\") # load the latest version of the small model\n",
+    "\n",
+    "nlp = dacy.load(\"small\")  # load the latest version of the small model\n",
     "\n",
     "nlp.add_pipe(\"textdescriptives/readability\")\n",
     "nlp.add_pipe(\"textdescriptives/dependency_distance\")"
@@ -230,6 +230,7 @@
    ],
    "source": [
     "import textdescriptives as td\n",
+    "\n",
     "# extract the metrics as a dataframe\n",
     "metrics = td.extract_df(doc, include_text=False)"
    ]
@@ -523,6 +524,7 @@
    ],
    "source": [
     "import seaborn as sns\n",
+    "\n",
     "sns.boxplot(x=\"label\", y=\"lix\", data=df)"
    ]
   },
@@ -563,7 +565,9 @@
     "# encode the label as a boolean\n",
     "df[\"is_ham\"] = df[\"label\"] == \"ham\"\n",
     "# compute the correlation between all metrics and the label\n",
-    "metrics_correlations = metrics.corrwith(df[\"is_ham\"]).sort_values(key=abs, ascending=False)\n",
+    "metrics_correlations = metrics.corrwith(df[\"is_ham\"]).sort_values(\n",
+    "    key=abs, ascending=False\n",
+    ")\n",
     "metrics_correlations[:10]"
    ]
   },
